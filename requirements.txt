@@ -1,0 +1,18 @@
+# pip install -r requirements.txt
+# Python Version 3.7
+
+CausalInference==0.1.2
+causallift==0.0.3
+causalml==0.8.0
+econml==0.7.0
+joblib==0.14.1
+matplotlib==3.3.4
+numpy==1.19.1
+pandas==1.1.2
+plotly==4.11.0
+scikit-learn==0.23.2
+scikit-plot==0.3.7
+scikit-uplift==0.2.0
+scipy==1.4.1
+seaborn==0.11.1
+xgboost==1.5.0
