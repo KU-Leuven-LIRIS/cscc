@@ -4,7 +4,6 @@
 CausalInference==0.1.2
 causallift==0.0.3
 causalml==0.8.0
-econml==0.7.0
 joblib==0.14.1
 matplotlib==3.3.4
 numpy==1.19.1
