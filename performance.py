@@ -180,8 +180,10 @@ def performance_metrics(effect_estimates,name_causal_model,T,Y,b,c):
         """
         Equal benefits
         """
-        benefit_pos = benefit
-        benefit_neg = benefit*1.2
+        benefit_pos = benefit*1.2
+        benefit_neg = benefit
+        #cost_pos = benefit*c
+        #cost_neg = benefit*c
         cost_pos = benefit_pos*c
         cost_neg = benefit_pos*c
 

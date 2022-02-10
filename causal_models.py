@@ -1,11 +1,7 @@
-import os, pandas as pd, numpy as np, matplotlib as mpl, matplotlib.pyplot as plt, missingno as msno, statsmodels.api as sm
+import os, pandas as pd, numpy as np, matplotlib as mpl, matplotlib.pyplot as plt, statsmodels.api as sm
 from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
-from econml.dml import ForestDMLCateEstimator
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import AdaBoostClassifier
-from econml.dml import NonParamDMLCateEstimator
-from sklearn.ensemble import AdaBoostClassifier
 from joblib import dump, load
 
 def train_causal(path_models, name_dataset,folds,T,Y,X,algorithm,load_model):
@@ -65,6 +61,7 @@ def fit_causal(folds,T,Y,X,model,algorithm_1,algorithm_2,algorithm_3,algorithm_4
     
     if model == 'CF':
         for i in list(range(0,amountofFolds)):
+            """
             def CF(Y_train,T_train,X_train,df_test):
                 np.random.seed(random_state)
                 CF_model= ForestDMLCateEstimator(model_y = algorithm_1,
@@ -92,36 +89,9 @@ def fit_causal(folds,T,Y,X,model,algorithm_1,algorithm_2,algorithm_3,algorithm_4
                 predictions = pd.concat([df_test,df_prob_treatment,s],axis = 1)
                 return predictions;
             fitted_model.append(CF(folds[0][i][Y],folds[0][i][T],folds[0][i][X],folds[1][i]))
-            
-    elif model == 'NonParamDMLCateEstimator':
-        for i in list(range(0,amountofFolds)):
-            def NPDML(Y_train,T_train,X_train,df_test):
-                np.random.seed(random_state)
-                NPDML_model= NonParamDMLCateEstimator(model_y = algorithm_1,
-                                                 model_t = algorithm_2,
-                                                 model_final = algorithm_3,
-                                                 discrete_treatment=True,
-                                                 n_splits = 10,
-                                                 random_state = random_state)
-                np.random.seed(random_state)
-                NPDML_model.fit(Y_train.to_numpy(), T_train.to_numpy(),X_train.to_numpy(), inference = 'bootstrap')
-                s = NPDML_model.effect(df_test[X].to_numpy())
-                testIndices = df_test.index.values
-                s = pd.DataFrame(s,testIndices, columns = {"s"})
-                # Estimate P(Y(1)|X)
-                df_train = pd.concat([Y_train,T_train,X_train], axis =1)
-                df_treated = df_train[df_train[T] == 1]
-                np.random.seed(random_state)
-                model_treated = xgb.XGBClassifier(objective = "binary:logistic",n_estimators = 100, random_state = random_state)
-                model_treated.fit(df_treated[X],df_treated[Y])
-                testIndices = df_test.index.values
-                prob_treatment = model_treated.predict_proba(df_test[X])[:,1]
-                df_prob_treatment = pd.DataFrame(prob_treatment,testIndices, columns = {"Prob_treat"})
-                # Summary results
-                predictions = pd.concat([df_test,df_prob_treatment,s],axis = 1)
-                return predictions;
-            fitted_model.append(NPDML(folds[0][i][Y],folds[0][i][T],folds[0][i][X],folds[1][i]))
-    
+            """            
+            fitted_model.append([])
+        
     elif model == 'T_learner':
         for i in list(range(0,amountofFolds)):
             def T_learner(df_train,df_test):

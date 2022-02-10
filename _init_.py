@@ -18,7 +18,6 @@ from fun_synthetic_data import *
 from data import load_data
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from econml.dml import ForestDMLCateEstimator
 from sklearn.ensemble import AdaBoostClassifier
 
 pd.options.mode.chained_assignment = None
