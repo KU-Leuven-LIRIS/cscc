@@ -1,5 +1,5 @@
 # cscc
-This repo contains the code to reproduce the results in the paper: Verbeke, W., Olaya, D., Guerry, M.A., Van Belle, J., 2022. To do or not to do? Cost-sensitive causal classification with individual treatment effect estimates.
+This repo contains the code to reproduce the results in the paper: Verbeke, W., Olaya, D., Guerry, M.A., & Van Belle, J. (2022). To do or not to do? Cost-sensitive causal classification with individual treatment effect estimates.
 
 Please follow the steps below to reproduce the reported results:<br/>
 (1) fork this repo to create a local copy on your computer;<br/>
